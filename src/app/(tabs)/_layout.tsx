@@ -6,9 +6,6 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{ headerShown: false }}
       tabBar={() => <CustomTabBar />}
-    >
-      <Tabs.Screen name="index" />
-      <Tabs.Screen name="reports" />
-    </Tabs>
+    />
   );
 }

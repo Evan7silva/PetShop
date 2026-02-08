@@ -17,6 +17,7 @@ export default function FloatingActionMenu() {
   function toggleMenu() {
     Animated.spring(animation, {
       toValue: open ? 0 : 1,
+      friction: 6,
       useNativeDriver: true,
     }).start();
     setOpen(!open);
@@ -33,7 +34,7 @@ export default function FloatingActionMenu() {
     ],
   };
 
-  const categoryStyle = {
+  const productStyle = {
     transform: [
       {
         translateY: animation.interpolate({
@@ -41,19 +42,31 @@ export default function FloatingActionMenu() {
           outputRange: [0, -70],
         }),
       },
+      {
+        translateX: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 70], //direita
+        })
+      },
       { scale: animation },
     ],
     opacity: animation,
   };
 
-  const productStyle = {
+  const categoryStyle = {
     transform: [
       {
         translateY: animation.interpolate({
           inputRange: [0, 1],
-          outputRange: [0, -140],
+          outputRange: [0, -55],
+        }),
+      }, {
+        translateX: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, -70], //esquerda
         }),
       },
+
       { scale: animation },
     ],
     opacity: animation,

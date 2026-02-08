@@ -18,8 +18,6 @@ export default function Layout() {
         return <LoaderScree/>
     }
     return (
-        <Stack screenOptions={{ headerShown: false}}>
-            <Stack.Screen name="()tabs"/>
-        </Stack>
+        <Stack screenOptions={{ headerShown: false}}/>
     ) 
 }
