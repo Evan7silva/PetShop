@@ -10,7 +10,7 @@ export const theme = {
     title: 32,
     large: 24,
     medium: 16,
-    small: 14,
+    small: 10,
   },
   spacing: {
     xs: 4,

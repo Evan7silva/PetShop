@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { CATEGORIES } from "@/utils/categories";
+import { PRODUCTS, ProductProps } from "@/utils/products";
 
 export default function Index() {
 
@@ -31,6 +32,15 @@ export default function Index() {
             </TouchableOpacity>
         )
     }
+
+    const renderProduct = ({ item }: { item: ProductProps }) => (
+        <TouchableOpacity style={styles.productCard}>
+            <View style={styles.imagemContainer}>
+                <Image source={item.image} style={styles.productImage} resizeMode="contain" />
+            </View>
+            <Text style={styles.productName}>{item.name}</Text>
+        </TouchableOpacity>
+    )
     return (
         <View style={styles.container}>
             <View style={styles.header}></View>
@@ -46,6 +56,17 @@ export default function Index() {
                         horizontal
                         showsHorizontalScrollIndicator={false}
                         contentContainerStyle={styles.flatListContent}
+                    />
+                </View>
+                <View style={{ width: '75%', height: '57%' }}>
+                    <FlatList
+                        data={PRODUCTS.filter(p => p.categoryId === selectedId)}
+                        renderItem={renderProduct}
+                        keyExtractor={(item) => item.id}
+                        numColumns={3}
+                        contentContainerStyle={styles.gridContent}
+                        columnWrapperStyle={styles.columnWrapper}
+                        showsVerticalScrollIndicator={false}
                     />
                 </View>
             </View>
@@ -109,5 +130,40 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         marginTop: 4,
         backgroundColor: theme.colors.white[300],
-    }
+    },
+    gridContent: {
+        paddingBottom: 100,
+        paddingHorizontal: 15,
+    },
+    columnWrapper: {
+        justifyContent: 'space-between',
+        marginBottom: 15,
+    },
+    productCard: {
+        backgroundColor: theme.colors.gray[300],
+        width: '30%',
+        aspectRatio: 0.8,
+        borderRadius: 12,
+        padding: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    imagemContainer: {
+        width: '100%',
+        height: '60%',
+        backgroundColor: theme.colors.white[300],
+        borderRadius: 50,
+        padding: 5,
+        marginBottom: 8,
+    },
+    productImage: {
+        width: '100%',
+        height: '100%',
+    },
+    productName: {
+        color: theme.colors.white[300],
+        fontSize: theme.textSizes.small,
+        textAlign: 'center',
+        fontFamily: theme.fonts.text,
+    },
 })
