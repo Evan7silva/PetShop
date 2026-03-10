@@ -6,6 +6,16 @@ import { CATEGORIES } from "@/utils/categories";
 import { PRODUCTS, ProductProps } from "@/utils/products";
 
 export default function Index() {
+    const EmptyCategory = () => (
+        <View style={styles.emptyContainer}>
+            <Image
+                source={require("@/assets/images/void.png")}
+                style={styles.emptyImage}
+                resizeMode="contain"
+            />
+            <Text style={styles.emptyText}>Ops! Esta prateleira está vazia.</Text>
+        </View>
+    );
 
     const [selectedId, setSelectedId] = useState(CATEGORIES[0].id);
 
@@ -67,6 +77,7 @@ export default function Index() {
                         contentContainerStyle={styles.gridContent}
                         columnWrapperStyle={styles.columnWrapper}
                         showsVerticalScrollIndicator={false}
+                        ListEmptyComponent={<EmptyCategory/>}
                     />
                 </View>
             </View>
@@ -132,6 +143,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.colors.white[300],
     },
     gridContent: {
+        flexGrow: 1,
         paddingBottom: 100,
         paddingHorizontal: 15,
     },
@@ -165,5 +177,25 @@ const styles = StyleSheet.create({
         fontSize: theme.textSizes.small,
         textAlign: 'center',
         fontFamily: theme.fonts.text,
+    },
+    emptyContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 50,
+        paddingHorizontal: 40,
+    },
+    emptyImage: {
+    width: 120,
+    height: 120,
+    marginBottom: 20,
+    opacity: 0.6, 
+  },
+    emptyText: {
+        fontSize: theme.textSizes.large,
+        textAlign: 'center',
+        fontFamily: theme.fonts.text,
+        lineHeight: 24,
+        color: theme.colors.white[100],
     },
 })

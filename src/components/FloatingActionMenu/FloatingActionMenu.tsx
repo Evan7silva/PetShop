@@ -98,7 +98,7 @@ export default function FloatingActionMenu() {
           style={styles.option}
         >
           <Ionicons name="pricetags-outline" size={22} color="#fff" />
-          <Text style={styles.text}>Categoria</Text>
+          <Text style={styles.text}>Fornecedor</Text>
         </TouchableOpacity>
       </Animated.View>
 
